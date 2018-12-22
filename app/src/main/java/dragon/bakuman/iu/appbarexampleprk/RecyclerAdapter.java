@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //Adapter for recyclerView
@@ -56,6 +57,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         return mList.size();
     }
 
+
+    //for filtering we create separate method
+    public void updateList(List<String> newList){
+
+        mList = new ArrayList<>();
+        mList.addAll(newList);
+        notifyDataSetChanged();
+
+    }
 
 
 
