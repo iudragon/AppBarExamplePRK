@@ -1,3 +1,24 @@
 <resources>
-    <string name="app_name">AppBarExamplePRK</string>
+    <string name="app_name">RecyclerViewExamplePRK</string>
+
+    <string-array name="kpopGroups">
+
+
+        <item>BIGBANG</item>
+        <item>EXO</item>
+        <item>DAY6</item>
+        <item>BLACKPINK</item>
+        <item>iKON</item>
+        <item>WINNER</item>
+        <item>BTS</item>
+        <item>TWICE</item>
+        <item>RED VELVET</item>
+        <item>SUPER JUNIOR</item>
+        <item>GOT7</item>
+        <item>2NE1</item>
+        <item>IU</item>
+
+
+
+    </string-array>
 </resources>

@@ -2,16 +2,19 @@ package dragon.bakuman.iu.appbarexampleprk;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.Toast;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-
-    private Toolbar mToolbar;
+    //handler for the recyclerView
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private List<String> mList;
+    private RecyclerAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,38 +22,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        //ToolBar is the default action bar for this activity
-        //if not it does not display the App Name!
-        mToolbar = findViewById(R.id.toolBar);
-        setSupportActionBar(mToolbar);
 
-    }
+        mRecyclerView = findViewById(R.id.recyclerView);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+        //for recyclerView we need 3 things: 1)Layout Manager 2) View Holder 3) Adapter
 
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.app_bar_menu, menu);
+        mLayoutManager = new LinearLayoutManager(this);
 
-        MenuItem.OnActionExpandListener onActionExpandListener = new MenuItem.OnActionExpandListener() {
-            @Override
-            public boolean onMenuItemActionExpand(MenuItem item) {
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
-                Toast.makeText(MainActivity.this, "Expanded", Toast.LENGTH_SHORT).show();
-                return true;
-            }
-
-            @Override
-            public boolean onMenuItemActionCollapse(MenuItem item) {
-                Toast.makeText(MainActivity.this, "Collapse", Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        };
-
-        MenuItem searchItem = menu.findItem(R.id.action_share);
-        searchItem.setOnActionExpandListener(onActionExpandListener);
+        mList = Arrays.asList(getResources().getStringArray(R.array.kpopGroups));
 
 
-        return true;
+        mAdapter = new RecyclerAdapter(mList);
+
+        mRecyclerView.setHasFixedSize(true);
+
+        mRecyclerView.setAdapter(mAdapter);
+
     }
 }
